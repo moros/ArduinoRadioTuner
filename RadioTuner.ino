@@ -4,7 +4,7 @@
 #include <TEA5767Radio.h>
 
 const int fmRange = 20;
-const byte interruptPin = 2;
+const int interruptPin = 2;
 
 // initializing the LCD display
 const int rs = 11, en = 12, d4 = 4, d5 = 5, d6 = 6, d7 = 7;
@@ -12,7 +12,7 @@ LiquidCrystal lcd(rs, en, d4, d5, d6, d7);
 
 // initializing the tuner module library
 TEA5767Radio radio = TEA5767Radio();
-float station = (99.3);
+float station = 0.0;
 
 int pot = A0;
 bool reset = false;

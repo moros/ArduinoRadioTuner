@@ -34,7 +34,7 @@ void setup()
 
     pinMode(pot, INPUT);
     pinMode(interruptPin, INPUT);
-    attachInterrupt(0, setFrequency, CHANGE);
+    attachInterrupt(digitalPinToInterrupt(interruptPin), setFrequency, CHANGE);
 }
 
 void loop()

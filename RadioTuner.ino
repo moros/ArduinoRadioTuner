@@ -19,41 +19,41 @@ bool reset = false;
 
 void setFrequency()
 {
-	Serial.print("selected station: ");
-	Serial.print(station);
-	Serial.println("");
+    Serial.print("selected station: ");
+    Serial.print(station);
+    Serial.println("");
 
-	reset = true;
+    reset = true;
 }
 
 void setup()
 {
-	Wire.begin();
-	Serial.begin(9600);
-	lcd.begin(16, 2);
-	
-	pinMode(pot, INPUT);
-	pinMode(interruptPin, INPUT);
-	attachInterrupt(0, setFrequency, CHANGE);
+    Wire.begin();
+    Serial.begin(9600);
+    lcd.begin(16, 2);
+
+    pinMode(pot, INPUT);
+    pinMode(interruptPin, INPUT);
+    attachInterrupt(0, setFrequency, CHANGE);
 }
 
 void loop()
 {
-	int input = analogRead(pot);
-	float percent = input / 1024.0;
-	float delta = fmRange * percent;
-	station = 88.0 + delta;
-	station = round(station * 10.0) / 10.0;
+    int input = analogRead(pot);
+    float percent = input / 1024.0;
+    float delta = fmRange * percent;
+    station = 88.0 + delta;
+    station = round(station * 10.0) / 10.0;
 
-	lcd.clear();
-	lcd.setCursor(0, 0);
-	lcd.print("station: ");
-	lcd.print(station);
+    lcd.clear();
+    lcd.setCursor(0, 0);
+    lcd.print("station: ");
+    lcd.print(station);
 
-	if (reset) {
-		reset = false;
-		radio.setFrequency(station);
-	}
-	
-	delay(200);
+    if (reset) {
+        reset = false;
+        radio.setFrequency(station);
+    }
+
+    delay(200);
 }
